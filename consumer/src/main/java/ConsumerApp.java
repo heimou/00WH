@@ -4,7 +4,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 /**
  * @author liyujie
- * @Description:
+ * @Description: 测试
  * @date: 2018/5/29
  */
 @SpringBootApplication

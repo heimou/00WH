@@ -1,12 +1,12 @@
 server:
-  port: 7002
+  port: 7002 #该服务的端口
 spring:
  dubbo:
   application:
-   name: consumer
+   name: consumer # 服务应用名
   registry:
    address: zookeeper://127.0.0.1:2181 # Zookeeper 注册中心
-  protocol:
+  protocol: #对外暴露的服务接口 默认为 20880
    name: dubbo
    port: 20880
   scan: com.dubbo.test

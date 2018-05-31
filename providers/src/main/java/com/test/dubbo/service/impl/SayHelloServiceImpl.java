@@ -2,6 +2,7 @@ package com.test.dubbo.service.impl;
 
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.alibaba.dubbo.rpc.RpcContext;
 import com.dubbo.test.SayHello;
 
 
@@ -15,6 +16,9 @@ public class SayHelloServiceImpl implements SayHello {
 
     @Override
     public String sayHello(String name) {
+        System.out.println("dubbo RpcContext:"+ RpcContext.getContext().getAttachment("param"));
+
+
         return "生产者："+name;
     }
 }

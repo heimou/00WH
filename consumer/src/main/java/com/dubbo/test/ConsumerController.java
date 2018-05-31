@@ -7,6 +7,7 @@ package com.dubbo.test;
  */
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.alibaba.dubbo.rpc.RpcContext;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,6 +20,8 @@ public class ConsumerController {
 
     @GetMapping("/test")
     public String getDubboTest(){
-       return sayHello.sayHello("开始调用!");
+        RpcContext.getContext().setAttachment("param","1");
+        System.out.println("开始调用："+sayHello.sayHello("开始调用!"));
+            return "正常结束" ;
     }
 }
