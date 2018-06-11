@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wh.dao.UPermissionDao">
+
+<select id="findPermissionByUid" resultType="com.wh.entity.UPermission" parameterType="java.lang.Long">
+
+    SELECT p.* from u_user_role urole left join  u_role_permission rp   on urole.rid=rp.rid  left join  u_permission p on p.id = rp.pid  where urole.uid = #{id}
+</select>
+
+</mapper>

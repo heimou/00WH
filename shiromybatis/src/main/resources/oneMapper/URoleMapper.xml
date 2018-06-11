@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wh.dao.URoleDao">
+
+    <select id="findRoleByUid" resultType="com.wh.entity.URole" parameterType="java.lang.Long">
+    SELECT role.id,role.name from u_user_role urole left join u_role role on urole.rid = role.id where urole.uid = #{id}
+  </select>
+
+
+</mapper>
