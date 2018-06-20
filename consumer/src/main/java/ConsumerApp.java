@@ -1,6 +1,7 @@
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
+//import org.springframework.data.mongodb.config.EnableMongoAuditing;
 
 /**
  * @author liyujie
@@ -15,4 +16,5 @@ public class ConsumerApp {
         SpringApplication.run(ConsumerApp.class,args);
         System.out.println("消费者 ConsumerApp 启动完毕！");
     }
+
 }

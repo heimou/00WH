@@ -25,14 +25,23 @@ public class SpringbootJmsApplicationTest {
     @Autowired
     private ActiveMqProducer producer;
 
+    /***
+     * create ActiveMq Test
+     * @throws InterruptedException
+     */
     @Test
     public void contextLoads() throws InterruptedException{
         Destination destination=new ActiveMQQueue("mytest.queue");
         for (int i = 0; i <100 ; i++) {
-            producer.sendMessage(destination,"myname is li"+i);
+            producer.sendMessage(destination,"my name is li "+i);
         }
 
     }
 
+    @Test
+    public void activeMqTest() throws InterruptedException{
+
+
+    }
 
 }

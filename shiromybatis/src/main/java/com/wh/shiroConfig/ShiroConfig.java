@@ -23,17 +23,34 @@ import java.util.Map;
 public class ShiroConfig {
 
 
+    /**
+     * LifecycleBeanPostProcessor
+     * 负责org.apache.shiro.util.Initializable 类型bean 的生命周期的，初始化和销毁
+     * 主要是AuthorizingRealm类的子类,以及EnCacheManger 类
+     *
+     * @return
+     */
     @Bean(name = "lifecycleBeanPostProcessor")
     public LifecycleBeanPostProcessor lifecycleBeanPostProcessor() {
         return new LifecycleBeanPostProcessor();
     }
 
+    /**
+     * 权限控制验证
+     *
+     * @return
+     */
     @Bean(name = "shiroRealm")
     @DependsOn("lifecycleBeanPostProcessor")
     public ShiroRealm shiroRealm() {
         return new ShiroRealm();
     }
 
+    /**
+     * EhCacheManager 缓存管理
+     *
+     * @return
+     */
     @Bean(name = "ehCacheManager")
     @DependsOn("lifecycleBeanPostProcessor")
     public EhCacheManager ehCacheManager() {
@@ -42,7 +59,8 @@ public class ShiroConfig {
     }
 
     /**
-     *  授权信息 存放在EhCache 中
+     * 授权信息 存放在EhCache 中
+     *
      * @return
      */
     @Bean(name = "securityManager")
@@ -54,7 +72,8 @@ public class ShiroConfig {
     }
 
     /**
-     *文件拦截器配置
+     * 文件拦截器配置
+     *
      * @param securityManager
      * @return
      */
@@ -70,11 +89,12 @@ public class ShiroConfig {
         filterChainDefinitionManager.put("/admin/**", "authc,roles[admin]");
         filterChainDefinitionManager.put("/login", "anon");//anon 可以理解为不拦截
         filterChainDefinitionManager.put("/validata", "anon");//anon 可以理解为不拦截
-        filterChainDefinitionManager.put("/statistic/**", "anon");//静态资源不拦截
+        filterChainDefinitionManager.put("/static/**", "anon");//静态资源不拦截
         filterChainDefinitionManager.put("/**", "authc,roles[user]");//其他资源全部拦截
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionManager);
 
         shiroFilterFactoryBean.setLoginUrl("/login");
+        //登录成功 跳到那个界面
         shiroFilterFactoryBean.setSuccessUrl("/");
         shiroFilterFactoryBean.setUnauthorizedUrl("/403");
 
@@ -83,17 +103,25 @@ public class ShiroConfig {
     }
 
     /**
-     *  开启shiro  异常代理
+     * 开启shiro  异常代理
+     *
      * @return
      */
     @Bean
     @ConditionalOnMissingBean
-    public DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator(){
-        DefaultAdvisorAutoProxyCreator daap=new DefaultAdvisorAutoProxyCreator();
+    public DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator() {
+        DefaultAdvisorAutoProxyCreator daap = new DefaultAdvisorAutoProxyCreator();
         daap.setProxyTargetClass(true);
         return daap;
     }
 
+    /**
+     * 开启shiro aop 注解支持
+     * 使用代理方式，所以需要开启代码支持
+     *
+     * @param securityManager
+     * @return
+     */
     @Bean
     public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(DefaultWebSecurityManager securityManager) {
         AuthorizationAttributeSourceAdvisor aasa = new AuthorizationAttributeSourceAdvisor();

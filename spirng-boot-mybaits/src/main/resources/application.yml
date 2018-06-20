@@ -1,0 +1,22 @@
+server:
+  port: 8081
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    onedata:
+     driver-class-name: com.mysql.jdbc.Driver
+     username: root
+     password: 123456
+     url: jdbc:mysql://localhost:3306/test
+     filters: stat
+    # 第二数据源配置
+    twodata:
+     driver-class-name: com.mysql.jdbc.Driver
+     username: root
+     password: 123456
+     url: jdbc:mysql://localhost:3306/test1
+     filters: stat
+mybatis:
+  config-location: classpath:mybatis-config.xml #读取本地配置文件
+#  mapper-locations: classpath:/oneMapper/*.xml #读取本地Mapper 配置文件
+  type-aliases-package: com.wh.entity  #实体映射包地址

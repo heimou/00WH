@@ -4,7 +4,7 @@ import com.dubbo.test.SayHello;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
- * @Description:${消费者启动类}
+ * @Description: 消费者启动类
  * @author:liyujie
  * @date:2018/5/31
  */

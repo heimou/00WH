@@ -8,7 +8,7 @@ import com.dubbo.test.SayHello;
 
 /**
  * @author liyujie
- * @Description:
+ * @Description: dubbo 生产者测试demo
  * @date: 2018/5/28
  */
 @Service

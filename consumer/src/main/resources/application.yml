@@ -5,8 +5,13 @@ spring:
   application:
    name: consumer # 服务应用名
   registry:
-   address: zookeeper://127.0.0.1:2181 # Zookeeper 注册中心
+   check: false
+   address: zookeeper://127.0.0.1:2181;zookeeper://127.0.0.1:2182;zookeeper://127.0.0.1:2183 # Zookeeper 注册中心
   protocol: #对外暴露的服务接口 默认为 20880
    name: dubbo
    port: 20880
   scan: com.dubbo.test
+# data:
+#   mongodb:
+#     host: 127.0.0.1
+#     port: 27017

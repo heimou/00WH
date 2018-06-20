@@ -8,5 +8,7 @@
    password: admin
    in-memory: true # 是否是内存模式 默认true
    pool:
-    enabled: false
-# 如果此处设置为true，需要加activeMq-pool 的依赖包，否则会自动配置失败，报JmsMessagingTemplate注入失败
+    enabled: false # 如果此处设置为true，需要加activeMq-pool 的依赖包，否则会自动配置失败，报JmsMessagingTemplate注入失败
+ server:
+   address:
+
